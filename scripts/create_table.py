@@ -4,17 +4,22 @@ import sys
 #
 # helpers
 #
-def safe_int(val, default=None):
+def parse_int(val, default=None):
     try:
-        return int (val)
+        [ cite, val_int ] = val.strip().split(':')
+        return int (val_int.strip()), cite
     except ValueError:
-        return default
+        return default, 'none'
 
-def safe_float(val, default=None):
+def parse_float(val, default=None):
     try:
-        return float(val)
+        [cite, val_float ] = val.strip().split(':')
+        return float(val_float.strip()), cite
     except ValueError:
-        return default
+        return default, 'none'
+
+def parse_str(val):
+    return val.strip()
 
 #
 # data types
@@ -30,13 +35,13 @@ class Track:
         else:
             self.subway = True
 
-        self.description = line[index['desc']]
-        self.place = line[index['place']]
-        self.costs = safe_float(line[index['costs']])
-        self.estimated_costs = safe_float(line[index['estCosts']])
-        self.length = safe_float(line[index['length']])
-        self.station = safe_int(line[index['stations']])
-        self.year = safe_int(line[index['year']])
+        self.description = parse_str(line[index['desc']])
+        self.place = parse_str(line[index['place']])
+        self.costs, self.costs_cite = parse_float(line[index['costs']])
+        self.estimated_costs, self.estimated_costs_cite = parse_float(line[index['eCosts']])
+        self.length, self.length_cite = parse_float(line[index['length']])
+        self.station, self.station_cite = parse_int(line[index['stations']])
+        self.year, self.year_cite = parse_int(line[index['year']])
 
     def any_costs(self):
         if self.costs:
@@ -45,6 +50,30 @@ class Track:
             return self.estimated_costs, False
 
 
+    def latex_costs(self):
+        if self.costs:
+            return str(self.costs) + " Mio \\cite{" + self.costs_cite + "}"
+        else:
+            return "-"
+    def latex_estimated_costs(self):
+        if self.estimated_costs:
+            return str(self.estimated_costs) + " Mio \\cite{" + self.estimated_costs_cite + "}"
+        else:
+            return "-"
+    def latex_length(self):
+        if self.length:
+            return str(self.length) + " \\cite{" + self.length_cite + "}"
+        else:
+            return "-"
+    def latex_year(self):
+        if self.year:
+            return str(self.year) + " \\cite{" + self.year_cite + "}"
+        else:
+            return "-"
+
+
+    def latex_with_source(self):
+        return "%s in %s & %s & %s & %s & %s \\\\" % (self.description, self.place, self.latex_estimated_costs(), self.latex_costs(), self.latex_length(), self.latex_year())
 
 #
 # api
@@ -56,7 +85,7 @@ def readCsvFile(filepath):
     with open(filepath) as csvfile:
         csvreader = csv.reader(csvfile, delimiter=',')
         header = next(csvreader)
-        index = { header[i] : i for i in range(len(header)) }
+        index = { header[i].strip() : i for i in range(len(header)) }
 
         for row in csvreader:
             data.append(Track(index, row))
@@ -65,26 +94,19 @@ def readCsvFile(filepath):
 
 def table_texify(tracks):
 
-
     header = " Strecke & geschätze Kosten & tatsächliche Kosten & Streckenlänge & Fertigstellung \\\\\n\\hline"
-    row_template = "  %s in %s & %s & %s & %s & %d \\\\\n"
 
     table_start = "\\begin{tabular}{" + " l"*5 + " }\n"
     table_end = "\\end{tabular}"
     lines = [table_start, header]
 
     for t in tracks:
-        lines.append(row_template %
-                     ( t.description,
-                       t.place,
-                       str(t.costs) + " Mio" if t.costs else "-",
-                       str(t.estimated_costs) + " Mio" if t.estimated_costs else "-",
-                       str(t.length),
-                       t.year ))
+        lines.append(t.latex_with_source())
 
     lines.append(table_end)
     return "\n".join(lines)
 
-if __name__=="__main__":
+if __name__ == "__main__":
     data = readCsvFile(sys.argv[1])
-    print(table_texify(data))
+    with open(sys.argv[2],'w') as outfile:
+        outfile.write(table_texify(data))
