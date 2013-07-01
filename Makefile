@@ -152,7 +152,7 @@ html	: @$(DEP) $(EPSPICS)
 main.tex: results_table.tex
 
 results_table.tex: scripts/create_table.py data/costs_with_sources.csv
-	python $^ > results_table.tex
+	python3 $^ > results_table.tex
 
 ######################################################################
 # Define rules for EPS source files.
