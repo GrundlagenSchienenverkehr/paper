@@ -32,7 +32,7 @@
 
 # $Id: Makefile,v 1.18 2006-06-19 10:58:11 mairas Exp $
 
-LATEX	= latex
+LATEX	= pdflatex
 BIBTEX	= bibtex
 MAKEINDEX = makeindex
 XDVI	= xdvi -gamma 4
@@ -89,7 +89,7 @@ define get_dependencies
 endef
 
 define getbibs
-	bibs=`perl -ne '($$_)=/^[^%]*\\\bibliography\{(.*?)\}/;@_=split /,/;foreach $$b (@_) {print "$$b.bib "}' $< $$deps`
+	bibs=`perl -ne '($$_)=/^[^%]*\\\bibliography\{(.*?)\}/;@_=split /,/;foreach $$b (@_) {print "$$b.aux "}' $< $$deps`
 endef
 
 define geteps
@@ -100,7 +100,7 @@ define manconf
 	mandeps=`if test -r $(basename $@).cnf ; then cat $(basename $@).cnf |tr -d '\n\r' ; fi`
 endef
 
-all 	: $(TRG)
+all 	: $(PDF)
 
 .PHONY	: all show clean ps pdf showps veryclean
 
@@ -116,7 +116,7 @@ veryclean	: clean
 	$(getbibs) ; echo $$bibs ; \
 	$(geteps) ; echo $$epses ; \
 	$(manconf) ; echo  $$mandeps  ;\
-	echo "$*.dvi $@ : $< $$deps $$bibs $$epses $$mandeps" > $@ 
+	echo "$*.pdf $@ : $< $$deps $$bibs $$epses $$mandeps" > $@
 
 include $(SRC:.tex=.d)
 
@@ -127,11 +127,11 @@ $(TRG)	: %.dvi : %.tex
 $(PSF)	: %.ps : %.dvi
 	  @$(DVIPS) $< -o $@
 
-$(PDF)  : %.pdf : %.dvi
-	  @$(DVIPDF) -o $@ $<
+#$(PDF)  : %.pdf : %.dvi
+#	  @$(DVIPDF) -o $@ $<
 # To use pdflatex, comment the two lines above and uncomment the lines below
-#$(PDF) : %.pdf : %.tex
-#	@$(run-pdflatex)
+$(PDF) : %.pdf : %.tex %.d
+	@$(run-pdflatex)
 
 
 show	: $(TRG)
@@ -140,19 +140,19 @@ show	: $(TRG)
 showps	: $(PSF)
 	  @for i in $(PSF) ; do $(GH) $$i & done
 
-ps	: $(PSF) 
+ps	: $(PSF)
 
-pdf	: $(PDF) 
+pdf	: $(PDF)
 
 # TODO: This probably needs fixing
 html	: @$(DEP) $(EPSPICS)
 	  @$(L2H) $(SRC)
 
 
-main.tex: results_table.tex
+main.pdf: results_table.tex
 
 results_table.tex: scripts/create_table.py data/costs_with_sources.csv
-	python $^ > results_table.tex
+	python3 $^ $@
 
 ######################################################################
 # Define rules for EPS source files.
