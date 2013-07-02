@@ -149,10 +149,13 @@ html	: @$(DEP) $(EPSPICS)
 	  @$(L2H) $(SRC)
 
 
-main.pdf: results_table.tex
+main.pdf: results_table.tex analysis_table.tex
 
 results_table.tex: scripts/create_table.py data/costs_with_sources.csv
-	python3 $^ $@
+	python3 $^ $@ results
+
+analysis_table.tex: scripts/create_table.py data/costs_with_sources.csv
+	python3 $^ $@ analysis
 
 ######################################################################
 # Define rules for EPS source files.

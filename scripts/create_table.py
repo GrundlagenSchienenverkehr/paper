@@ -40,7 +40,7 @@ class Track:
         self.costs, self.costs_cite = parse_float(line[index['costs']])
         self.estimated_costs, self.estimated_costs_cite = parse_float(line[index['eCosts']])
         self.length, self.length_cite = parse_float(line[index['length']])
-        self.station, self.station_cite = parse_int(line[index['stations']])
+        self.stations, self.stations_cite = parse_int(line[index['stations']])
         self.year, self.year_cite = parse_int(line[index['year']])
 
     def any_costs(self):
@@ -48,7 +48,6 @@ class Track:
             return self.costs, True
         else:
             return self.estimated_costs, False
-
 
     def latex_costs(self):
         if self.costs:
@@ -71,9 +70,37 @@ class Track:
         else:
             return "-"
 
+    def latex_stations(self):
+        if self.stations:
+            return str(self.stations) + " \\cite{" + self.stations_cite + "}"
+        else:
+            return "-"
 
-    def latex_with_source(self):
-        return "%s in %s & %s & %s & %s & %s \\\\" % (self.description, self.place, self.latex_estimated_costs(), self.latex_costs(), self.latex_length(), self.latex_year())
+    def latex_length_costs(self):
+        if self.costs and self.length:
+            return "%0.2f  Mio" % (self.costs / self.length)
+        elif self.estimated_costs and self.length:
+            return "%0.2f Mio \\footnotemark[1]" % (self.estimated_costs/ self.length)
+        else:
+            return "-"
+
+    def latex_stations_costs(self):
+        if self.costs and self.stations:
+            return "%0.2f Mio" % (self.costs/ self.stations)
+        elif self.estimated_costs and self.stations:
+            return "%0.2f Mio \\footnotemark[1]" % (self.estimated_costs/ self.stations)
+        else:
+            return "-"
+
+    def latex_results_track(self):
+        return "%s in %s & %s & %s & %s & %s & %s \\\\" % (
+            self.description, self.place, self.latex_estimated_costs(),
+            self.latex_costs(), self.latex_length(), self.latex_stations(), self.latex_year())
+
+    def latex_analysis_track(self):
+        return "%s in %s & %s & %s \\\\" % (
+            self.description, self.place,
+            self.latex_length_costs(), self.latex_stations_costs() )
 
 #
 # api
@@ -92,21 +119,37 @@ def readCsvFile(filepath):
 
     return data
 
-def table_texify(tracks):
 
-    header = " Strecke & geschätze Kosten & tatsächliche Kosten & Streckenlänge & Fertigstellung \\\\\n\\hline"
+def render_table(tracks, fields, methodname):
 
-    table_start = "\\begin{tabular}{" + " l"*5 + " }\n"
+    header = " & ".join(fields) + " \\\\\n\\hline"
+    table_start = "\\begin{tabular}{" + " l" * len(fields)  + " }\n"
     table_end = "\\end{tabular}"
+
     lines = [table_start, header]
 
     for t in tracks:
-        lines.append(t.latex_with_source())
+        handler = getattr(t,"latex_%s_track" % ( methodname ))
+        lines.append(handler())
 
     lines.append(table_end)
     return "\n".join(lines)
 
+def result_table(tracks):
+    fields = ["Strecke", "geschätze Kosten", "tatsächliche Kosten", "Streckenlänge", "Stationen", "Fertigstellung"]
+    return render_table(tracks, fields, "results")
+
+
+def analysis_table(tracks):
+    fields = ["Strecke", "\O  Kosten pro km", "\O  Kosten pro Station"]
+    return render_table(tracks, fields, "analysis") + "\\footnotetext[1]{berechnet mit geschätzten Kosten}"
+
+
 if __name__ == "__main__":
     data = readCsvFile(sys.argv[1])
     with open(sys.argv[2],'w') as outfile:
-        outfile.write(table_texify(data))
+
+        if sys.argv[3] == "results":
+            outfile.write(result_table(data))
+        else:
+            outfile.write(analysis_table(data))
