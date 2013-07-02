@@ -32,7 +32,7 @@
 
 # $Id: Makefile,v 1.18 2006-06-19 10:58:11 mairas Exp $
 
-LATEX	= pdflatex
+LATEX	= pdflatex -interaction nonstopmode
 BIBTEX	= bibtex
 MAKEINDEX = makeindex
 XDVI	= xdvi -gamma 4
@@ -148,6 +148,8 @@ pdf	: $(PDF)
 html	: @$(DEP) $(EPSPICS)
 	  @$(L2H) $(SRC)
 
+main.aux: main.tex
+	@$(run-pdflatex)
 
 main.pdf: results_table.tex analysis_table.tex
 
