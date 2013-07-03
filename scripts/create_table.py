@@ -118,10 +118,10 @@ class Track:
             return "-"
 
     def latex_results_track(self):
-        return "%s in %s & %s & %s & %s & %s & %s & %s\\\\" % (
+        return "%s in %s & %s & %s & %s & %s & %s & %s & %s & %s\\\\" % (
             self.description, self.place, self.latex_estimated_costs(),
-            self.latex_costs(), self.latex_length(), self.latex_switches(),
-            self.latex_stations(), self.latex_year())
+            self.latex_costs(), self.latex_length(), self.latex_tunnel_length(), self.latex_bridge_length(),
+            self.latex_switches(), self.latex_stations(), self.latex_year())
 
     def latex_analysis_track(self):
         return "%s in %s & %s & %s \\\\" % (
@@ -147,7 +147,6 @@ def readCsvFile(filepath):
 
 
 def render_table(tracks, fields, methodname):
-
     header = " & ".join(fields) + " \\\\\n\\hline"
     table_start = "\\begin{tabular}{" + " l" * len(fields)  + " }\n"
     table_end = "\\end{tabular}"
@@ -162,8 +161,18 @@ def render_table(tracks, fields, methodname):
     return "\n".join(lines)
 
 def result_table(tracks):
-    fields = ["Strecke", "geschätze Kosten", "tatsächliche Kosten", "Streckenlänge in km", "Weichen", "Haltstellen", "Fertigstellung"]
-    return render_table(tracks, fields, "results")
+    fields = ["Strecke", "\multicolumn{2}{c}{Kosten}", " \multicolumn{3}{c}{Streckenlänge in km}", "Weichen", "Haltstellen", "Fertigstellung"]
+    header = " & ".join(fields) + " \\\\\n" + "& geschätzt & tatsächlich & gesamt & Tunnel & Brücken & & & \\\\\n\hline"
+    table_start = "\\begin{tabular}{" + " l" * 4 + "p{1.5cm}" * 2 + "l" * 3  + " }\n"
+    table_end = "\\end{tabular}"
+
+    lines = [table_start, header]
+
+    for t in tracks:
+        lines.append(t.latex_results_track())
+
+    lines.append(table_end)
+    return "\n".join(lines)
 
 
 def analysis_table(tracks):
