@@ -11,8 +11,8 @@ Tram,   Hauptbahnhof,             Berlin,         ?,              ?,            
 Tram,   Abschnitt,                Bergen,         ?,              110,          9.8,            ?,              ?,              ?,              ?,                    2010
 Tram,   Netz,                     Århus,          ?,              65,           12,             ?,              ?,              ?,              ?,                    2016
 Tram,   T1,                       Toulouse,       212,            ?,            11,             18,             ?,              ?,              ?,                    2010
-UBahn,  Hafencity,                Hamburg,        keuHH: 323.6,   ?,            keuHH:4,        keuHH:2,        ?,              ?,              ?,                    keuHH:2012
-UBahn,  Lückenschluss U5,         Berlin,         ?,              bwwwU5: 433,  bkhU5:2.2,      bkhU5:3,        ?,              ?,              ?,                    bwwwU5:2019
+UBahn,  Hafencity,                Hamburg,        keuHH: 323.6,   ?,            keuHH:4,        keuHH:2,        ?,              keuHH:4,        gpwHH:6,              keuHH:2012
+UBahn,  Lückenschluss U5,         Berlin,         ?,              bwwwU5: 433,  bkhU5:2.2,      bkhU5:3,        ?,              bkhU5:2.2,      gpwB:14,              bwwwU5:2019
 UBahn,  gesamtes Netz,            Dubai,          5700,           3800,         76,             47,             ?,              ?,              ?,                    2011
 UBahn,  Linie B,                  Toulouse,       1150,           ?,            16.2,           20,             ?,              ?,              ?,                    2007
 UBahn,  gesamtes Netz,            Brescia,        900,            600,          13.7,           17,             ?,              ?,              ?,                    2012
