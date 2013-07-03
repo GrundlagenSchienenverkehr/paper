@@ -40,8 +40,11 @@ class Track:
         self.costs, self.costs_cite = parse_float(line[index['costs']])
         self.estimated_costs, self.estimated_costs_cite = parse_float(line[index['eCosts']])
         self.length, self.length_cite = parse_float(line[index['length']])
+        self.tunnel_length, self.tunnel_length_cite = parse_float(line[index['tunnelkm']])
+        self.bridge_length, self.bridge_length_cite = parse_float(line[index['bridgekm']])
         self.stations, self.stations_cite = parse_int(line[index['stations']])
         self.year, self.year_cite = parse_int(line[index['year']])
+        self.switches, self.switches_cite = parse_int(line[index['switches']])
 
     def any_costs(self):
         if self.costs:
@@ -54,16 +57,31 @@ class Track:
             return str(self.costs) + " Mio \\cite{" + self.costs_cite + "}"
         else:
             return "-"
+
     def latex_estimated_costs(self):
         if self.estimated_costs:
             return str(self.estimated_costs) + " Mio \\cite{" + self.estimated_costs_cite + "}"
         else:
             return "-"
+
     def latex_length(self):
         if self.length:
             return str(self.length) + " \\cite{" + self.length_cite + "}"
         else:
             return "-"
+
+    def latex_tunnel_length(self):
+        if self.tunnel_length:
+            return str(self.tunnel_length) + " \\cite{" + self.tunnel_length_cite + "}"
+        else:
+            return "-"
+
+    def latex_bridge_length(self):
+        if self.bridge_length:
+            return str(self.bridge_length) + " \\cite{" + self.bridge_length_cite + "}"
+        else:
+            return "-"
+
     def latex_year(self):
         if self.year:
             return str(self.year) + " \\cite{" + self.year_cite + "}"
@@ -75,6 +93,13 @@ class Track:
             return str(self.stations) + " \\cite{" + self.stations_cite + "}"
         else:
             return "-"
+
+    def latex_switches(self):
+        if self.switches:
+            return str(self.switches) + " \\cite{" + self.switches_cite + "}"
+        else:
+            return "-"
+
 
     def latex_length_costs(self):
         if self.costs and self.length:
@@ -88,14 +113,15 @@ class Track:
         if self.costs and self.stations:
             return "%0.2f Mio" % (self.costs/ self.stations)
         elif self.estimated_costs and self.stations:
-            return "%0.2f Mio \\footnotemark[1]" % (self.estimated_costs/ self.stations)
+            return "%0.2f Mio \\footnotemark[2]" % (self.estimated_costs/ self.stations)
         else:
             return "-"
 
     def latex_results_track(self):
-        return "%s in %s & %s & %s & %s & %s & %s \\\\" % (
+        return "%s in %s & %s & %s & %s & %s & %s & %s\\\\" % (
             self.description, self.place, self.latex_estimated_costs(),
-            self.latex_costs(), self.latex_length(), self.latex_stations(), self.latex_year())
+            self.latex_costs(), self.latex_length(), self.latex_switches(),
+            self.latex_stations(), self.latex_year())
 
     def latex_analysis_track(self):
         return "%s in %s & %s & %s \\\\" % (
@@ -136,13 +162,13 @@ def render_table(tracks, fields, methodname):
     return "\n".join(lines)
 
 def result_table(tracks):
-    fields = ["Strecke", "geschätze Kosten", "tatsächliche Kosten", "Streckenlänge", "Stationen", "Fertigstellung"]
+    fields = ["Strecke", "geschätze Kosten", "tatsächliche Kosten", "Streckenlänge in km", "Weichen", "Haltstellen", "Fertigstellung"]
     return render_table(tracks, fields, "results")
 
 
 def analysis_table(tracks):
-    fields = ["Strecke", "\O  Kosten pro km", "\O  Kosten pro Station"]
-    return render_table(tracks, fields, "analysis") + "\\footnotetext[1]{berechnet mit geschätzten Kosten}"
+    fields = ["Strecke", "Kosten pro km", "Kosten pro Halt"]
+    return render_table(tracks, fields, "analysis") + "\\footnotetext[2]{berechnet mit geschätzten Kosten}"
 
 
 if __name__ == "__main__":
