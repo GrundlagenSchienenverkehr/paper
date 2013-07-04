@@ -11,7 +11,7 @@ Tram,   TU-Lichtwiese Variante I,  Darmstadt,      ?,              23.58,       
 Tram,   TU-Lichtwiese Variante II, Darmstadt,      ?,              8.32,         1.33,           1,              0,              0,              8,                    ?
 Tram,   Ruhbank,                   Stuttgart,      ?,              46,           4.922,          8,              ?,              ?,              ?,                    2007
 Tram,   Stammheim,                 Stuttgart,      105,            ?,            2.985,          5,              ?,              ?,              ?,                    2011
-Tram,   Hauptbahnhof,              Berlin,         ?,              ?,            2.4,            3,              ?,              ?,              ?,                    2014
+Tram,   Hauptbahnhof,              Berlin,         ?,              ?,            tsM10:2.4,      bauDokuM10:6,   ?,              ?,              gpwBM10:17,           vorhabenM10:2015
 Tram,   Abschnitt,                 Bergen,         ?,              110,          9.8,            ?,              ?,              ?,              ?,                    2010
 Tram,   Netz,                      Århus,          ?,              65,           12,             ?,              ?,              ?,              ?,                    2016
 Tram,   T1,                        Toulouse,       212,            ?,            11,             18,             ?,              ?,              ?,                    2010
