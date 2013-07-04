@@ -17,7 +17,7 @@ Tram,   Netz,                      Århus,          ?,              65,         
 Tram,   T1,                        Toulouse,       212,            ?,            11,             18,             ?,              ?,              ?,                    2010
 UBahn,  Hafencity,                 Hamburg,        keuHH: 323.6,   ?,            keuHH:4,        keuHH:2,        ?,              keuHH:4,        gpwHH:6,              keuHH:2012
 UBahn,  Lückenschluss U5,          Berlin,         ?,              bwwwU5: 433,  bkhU5:2.2,      bkhU5:3,        ?,              bkhU5:2.2,      gpwB:14,              bwwwU5:2019
-UBahn,  gesamtes Netz,             Dubai,          5700,           3800,         76,             47,             ?,              ?,              ?,                    2011
+UBahn,  gesamtes Netz,             Dubai,          gnCosts:5700,   gnCosts:3800, dubaimetro:75,  hallodubai:47,  ?,              hallodubai:12,  ?,                    dubaiOpensGreen:2011
 UBahn,  Linie B,                   Toulouse,       1150,           ?,            16.2,           20,             ?,              ?,              ?,                    2007
 UBahn,  gesamtes Netz,             Brescia,        900,            600,          13.1,           17,             1.7,            9.7,            ?,                    2012
 UBahn,  Neubau der U3,             Nürnberg,       ?,              360,          3.6,            17,             0,              3.6,            ?,                    2007
