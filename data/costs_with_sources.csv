@@ -9,7 +9,7 @@ Tram,   Arheilgen Bauabschnitt 1,  Darmstadt,      23.3,           11.7,        
 Tram,   Arheilgen Bauabschnitt 2,  Darmstadt,      15,2,           ?,            1.2,            3,              0,              0,              2,                    2011
 Tram,   TU-Lichtwiese Variante I,  Darmstadt,      ?,              23.58,        2.05,           4,              0,              0,              4,                    ?
 Tram,   TU-Lichtwiese Variante II, Darmstadt,      ?,              8.32,         1.33,           1,              0,              0,              8,                    ?
-Tram,   Ruhbank,                   Stuttgart,      ?,              46,           4.922,          8,              ?,              ?,              ?,                    2007
+Tram,   Ruhbank,                   Stuttgart,      u15mail:48,     ?,            u15splan:4.922, u15splan:8,     0,              0,              u15mail:12,           u15seb:2007
 Tram,   Stammheim,                 Stuttgart,      105,            ?,            2.985,          5,              ?,              ?,              ?,                    2011
 Tram,   Hauptbahnhof,              Berlin,         ?,              ?,            tsM10:2.4,      bauDokuM10:6,   ?,              ?,              gpwBM10:17,           vorhabenM10:2015
 Tram,   Abschnitt,                 Bergen,         ?,              110,          9.8,            ?,              ?,              ?,              ?,                    2010
