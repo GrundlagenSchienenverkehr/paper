@@ -151,13 +151,10 @@ html	: @$(DEP) $(EPSPICS)
 main.aux: main.tex
 	@$(run-pdflatex)
 
-main.pdf: results_table.tex analysis_table.tex
+main.pdf: results_table.tex
 
 results_table.tex: scripts/create_table.py data/costs_with_sources.csv
-	python3 $^ $@ results
-
-analysis_table.tex: scripts/create_table.py data/costs_with_sources.csv
-	python3 $^ $@ analysis
+	python3 $^ $@  analysis_table_trams.tex analysis_table_subway.tex
 
 ######################################################################
 # Define rules for EPS source files.

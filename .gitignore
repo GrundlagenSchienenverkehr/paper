@@ -33,4 +33,5 @@
 *.d
 main.pdf
 results_table.tex
-analysis_table.tex
+analysis_table_subway.tex
+analysis_table_trams.tex

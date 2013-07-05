@@ -1,6 +1,7 @@
 import csv
 import sys
-
+import locale
+from locale import str, format_string
 #
 # helpers
 #
@@ -20,6 +21,17 @@ def parse_float(val, default=None):
 
 def parse_str(val):
     return val.strip()
+
+def dev(avarage, val):
+    diff = val - avarage
+    dev = diff / avarage
+    if dev > 0:
+        sign = "+"
+    elif dev < 0:
+        sign = "\\textminus"
+    else:
+       sign = "\\textpm"
+    return format_string("%s %d \\%%", (sign, int(abs(dev)*100)))
 
 #
 # data types
@@ -54,13 +66,19 @@ class Track:
 
     def latex_costs(self):
         if self.costs:
-            return str(self.costs) + " Mio \\cite{" + self.costs_cite + "}"
+            if self.costs > 1000:
+                return str(self.costs/1000) + " Mrd \\cite{" + self.costs_cite + "}"
+            else:
+                return str(self.costs) + " Mio \\cite{" + self.costs_cite + "}"
         else:
             return "-"
 
     def latex_estimated_costs(self):
         if self.estimated_costs:
-            return str(self.estimated_costs) + " Mio \\cite{" + self.estimated_costs_cite + "}"
+            if self.estimated_costs > 1000:
+                return str(self.estimated_costs/1000) + " Mrd \\cite{" + self.estimated_costs_cite + "}"
+            else:
+                return str(self.estimated_costs) + " Mio \\cite{" + self.estimated_costs_cite + "}"
         else:
             return "-"
 
@@ -101,19 +119,19 @@ class Track:
             return "-"
 
 
-    def latex_length_costs(self):
+    def latex_length_costs(self, avarage):
         if self.costs and self.length:
-            return "%0.2f  Mio" % (self.costs / self.length)
+            return format_string("%0.2f  Mio & %s", (self.costs / self.length, dev(avarage.length_costs,self.costs/ self.length) ))
         elif self.estimated_costs and self.length:
-            return "%0.2f Mio \\footnotemark[1]" % (self.estimated_costs/ self.length)
+            return format_string("%0.2f Mio \\footnotemark[1] & %s", (self.estimated_costs/ self.length, dev(avarage.length_costs,self.estimated_costs/ self.length) ))
         else:
             return "-"
 
-    def latex_stations_costs(self):
+    def latex_stations_costs(self, avarage):
         if self.costs and self.stations:
-            return "%0.2f Mio" % (self.costs/ self.stations)
+            return format_string("%0.2f Mio & %s ", (self.costs/ self.stations, dev(avarage.stations_costs,self.costs/ self.stations)))
         elif self.estimated_costs and self.stations:
-            return "%0.2f Mio \\footnotemark[2]" % (self.estimated_costs/ self.stations)
+            return format_string("%0.2f Mio \\footnotemark[2] & %s", (self.estimated_costs/ self.stations,  dev(avarage.stations_costs,self.estimated_costs/ self.stations)))
         else:
             return "-"
 
@@ -123,10 +141,41 @@ class Track:
             self.latex_costs(), self.latex_length(), self.latex_tunnel_length(), self.latex_bridge_length(),
             self.latex_switches(), self.latex_stations(), self.latex_year())
 
-    def latex_analysis_track(self):
+    def latex_analysis_track(self, avarage):
         return "%s in %s & %s & %s \\\\" % (
             self.description, self.place,
-            self.latex_length_costs(), self.latex_stations_costs() )
+            self.latex_length_costs(avarage), self.latex_stations_costs(avarage) )
+
+
+class Avarage:
+
+    def __init__(self, tracks):
+
+        self.length_costs = 0
+        self.stations_costs = 0
+        counter = 0
+
+        for t in tracks:
+
+
+            if t.costs and t.length:
+                counter += 1
+                self.length_costs += t.costs/t.length
+                self.stations_costs += t.costs/t.stations
+
+            elif t.estimated_costs and t.length:
+                counter += 1
+                self.length_costs += t.estimated_costs/t.length
+                self.stations_costs += t.estimated_costs/t.stations
+
+
+        self.length_costs /= counter
+        self.stations_costs /= counter
+
+
+    def latex_analysis_track(self, _):
+        return format_string("Durchschnitt & %0.2f Mio & \\textpm 0 & %0.2f Mio & \\textpm 0 \\\\", (self.length_costs, self.stations_costs))
+
 
 #
 # api
@@ -146,24 +195,31 @@ def readCsvFile(filepath):
     return data
 
 
-def render_table(tracks, fields, methodname):
-    header = " & ".join(fields) + " \\\\\n\\hline"
-    table_start = "\\begin{tabular}{" + " l" * len(fields)  + " }\n"
+def analysis_table(tracks):
+
+    fields = ["Strecke", "\multicolumn{2}{c}{Kosten pro km}", "\multicolumn{2}{c}{Kosten pro Halt}"]
+    av = Avarage(tracks)
+
+    header = " & ".join(fields) + " \\\\\n"
+    subheader = " & absolut & relativ & absolut & relativ \\\\\n\\hline"
+    table_start = "\\begin{tabular}{" + " l" * (len(fields) +2  )  + " }\n"
     table_end = "\\end{tabular}"
 
-    lines = [table_start, header]
+    lines = [table_start, header, subheader ]
+
+    tracks.insert(0, av)
 
     for t in tracks:
-        handler = getattr(t,"latex_%s_track" % ( methodname ))
-        lines.append(handler())
+        lines.append(t.latex_analysis_track(av))
 
     lines.append(table_end)
+    lines.append("\\footnotetext[2]{berechnet mit geschätzten Kosten}")
     return "\n".join(lines)
 
 def result_table(tracks):
-    fields = ["Strecke", "\multicolumn{2}{c}{Kosten}", " \multicolumn{3}{c}{Streckenlänge in km}", "Weichen", "Haltstellen", "Fertigstellung"]
-    header = " & ".join(fields) + " \\\\\n" + "& geschätzt & tatsächlich & gesamt & Tunnel & Brücken & & & \\\\\n\hline"
-    table_start = "\\begin{tabular}{" + " l" * 4 + "p{1.5cm}" * 2 + "l" * 3  + " }\n"
+    fields = ["Strecke", "\multicolumn{2}{c}{Kosten in \euro}", " \multicolumn{3}{c}{Streckenlänge in km}", "Weichen", "Haltstellen", "Fertigstellung"]
+    header = " & ".join(fields) + " \\\\\n" + "& geschätzt & tatsächlich & gesamt & Tunnel & Brücken & & & \\\\\n\hline\n"
+    table_start = "\\begin{tabular}{" + " l" * 4 + "l" * 2 + "l" * 3  + " }\n"
     table_end = "\\end{tabular}"
 
     lines = [table_start, header]
@@ -175,16 +231,23 @@ def result_table(tracks):
     return "\n".join(lines)
 
 
-def analysis_table(tracks):
-    fields = ["Strecke", "Kosten pro km", "Kosten pro Halt"]
-    return render_table(tracks, fields, "analysis") + "\\footnotetext[2]{berechnet mit geschätzten Kosten}"
+
 
 
 if __name__ == "__main__":
     data = readCsvFile(sys.argv[1])
-    with open(sys.argv[2],'w') as outfile:
 
-        if sys.argv[3] == "results":
-            outfile.write(result_table(data))
-        else:
-            outfile.write(analysis_table(data))
+    locale.setlocale(locale.LC_NUMERIC, 'de_DE.utf8')
+
+    files = sys.argv[2:]
+
+    with open(files[0],'w') as outfile:
+        outfile.write(result_table(data))
+
+    with open(files[1],'w') as outfile:
+        trams = list(filter(lambda x: x.tram, data))
+        outfile.write(analysis_table(trams))
+
+    with open(files[2],'w') as outfile:
+        subs = list(filter(lambda x: x.subway, data))
+        outfile.write(analysis_table(subs))
