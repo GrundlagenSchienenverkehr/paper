@@ -1,6 +1,6 @@
 type,   desc,                      place,          costs,          eCosts,       length,         stations,       bridgekm,       tunnelkm,       switches,             year
 Tram,   Bauabschnitt 3,            Magdeburg,      ba3reform:22,   ?,            ba3reform:3.6,  ba3reform:8,    0,              0,              ba3reform:2,          ba3reform:2012
-Tram,   Verlängerung L1,           Bremen,         ?,              62,           4.8,            10,             ?,              ?,              ?,                    2013
+Tram,   Verlängerung L1,           Bremen,         ?,              62,           4.8,            10,             0,              0.01            5,                    2013
 Tram,   Vauban,                    Freiburg,       18.7,           ?,            2.5,            5,              ?,              ?,              ?,                    2007
 Tram,   Zähringen,                 Freiburg,       ?,              28.3,         1.8,            ?,              ?,              ?,              ?,                    2014
 Tram,   erste Strecke,             Darmstadt,      5.1,            ?,            5.5,            34,             0,              0,              24,                   1897
@@ -20,4 +20,4 @@ UBahn,  Lückenschluss U5,          Berlin,         ?,              bwwwU5: 433,
 UBahn,  gesamtes Netz,             Dubai,          gnCosts:5700,   gnCosts:3800, dubaimetro:75,  hallodubai:47,  ?,              hallodubai:12,  ?,                    dubaiOpensGreen:2011
 UBahn,  Linie B,                   Toulouse,       1150,           ?,            16.2,           20,             ?,              ?,              ?,                    2007
 UBahn,  gesamtes Netz,             Brescia,        brescRai:935,   brescSv:586,  brescSts:13.1,  brescSts:17,    brescSts:1.7,   brescSts:9.7,   ?,                    2012
-UBahn,  Neubau der U3,             Nürnberg,       ?,              360,          3.6,            17,             0,              3.6,            ?,                    2007
+UBahn,  Neubau der U3,             Nürnberg,       ?,              360,          3.6,            17,             0,              3.6,            11,                    2007
