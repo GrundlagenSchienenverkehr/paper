@@ -1,6 +1,6 @@
 type,   desc,                      place,          costs,          eCosts,       length,         stations,       bridgekm,       tunnelkm,       switches,             year
 Tram,   Bauabschnitt 3,            Magdeburg,      ba3reform:22,   ?,            ba3reform:3.6,  ba3reform:8,    0,              0,              ba3reform:2,          ba3reform:2012
-Tram,   Verlängerung L1,           Bremen,         ?,              62,           4.8,            10,             0,              0.01,           5,                    2013
+Tram,   Verlängerung L1,           Bremen,         bRadio:62,      ?,            bPlan:3.6,      bPlan:10,       bPlan:0.01,     0,              5,                    bRadio:2013
 Tram,   Vauban,                    Freiburg,       18.7,           ?,            2.5,            5,              ?,              ?,              ?,                    2007
 Tram,   Zähringen,                 Freiburg,       ?,              28.3,         1.8,            ?,              ?,              ?,              ?,                    2014
 Tram,   erste Strecke,             Darmstadt,      5.1,            ?,            5.5,            34,             0,              0,              24,                   1897
