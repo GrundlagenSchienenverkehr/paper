@@ -1,16 +1,16 @@
 type,   desc,                      place,          costs,          eCosts,       length,         stations,       bridgekm,       tunnelkm,       switches,             year
-Tram,   Bauabschnitt 3,            Magdeburg,      ba3reform:22,   ?,            ba3reform:3.6,  ba3reform:8,    0,              0,              ba3reform:2,          ba3reform:2012
+Tram,   BA 3,                      Magdeburg,      ba3reform:22,   ?,            ba3reform:3.6,  ba3reform:8,    0,              0,              ba3reform:2,          ba3reform:2012
 Tram,   Verlängerung L1,           Bremen,         bRadio:62,      ?,            bNp10:4.8,      bPlan:10,       bPlan:0.01,     0,              brGp:5,               bRadio:2013
 Tram,   Vauban,                    Freiburg,       FRabv2:18.7,    ?,            FRabv:2.5,      FRabv:5,        0,              0,              ?,                    FRabv:2006
 Tram,   Zähringen,                 Freiburg,       ?,              FRabz:28.3,   FRabz:1.8,      FRabz:4,        0,              0,              ?,                    FRabz:2014
 Tram,   erste Strecke,             Darmstadt,      5.1,            ?,            5.5,            34,             0,              0,              24,                   1897
 Tram,   diverse Ausbauten,         Darmstadt,      5.6,            ?,            5.98,           29,             0,              0,              14,                   1903
-Tram,   Arheilgen Bauabschnitt 1,  Darmstadt,      23.3,           11.7,         1.3,            3,              0,              0,              0,                    2009
-Tram,   Arheilgen Bauabschnitt 2,  Darmstadt,      15.2,           ?,            1.2,            3,              0,              0,              2,                    2011
-Tram,   TU-Lichtwiese Variante I,  Darmstadt,      ?,              23.58,        2.05,           4,              0,              0,              4,                    ?
-Tram,   TU-Lichtwiese Variante II, Darmstadt,      ?,              8.32,         1.33,           1,              0,              0,              8,                    ?
+Tram,   Arheilgen BA 1,            Darmstadt,      23.3,           11.7,         1.3,            3,              0,              0,              0,                    2009
+Tram,   Arheilgen BA 2,            Darmstadt,      15.2,           ?,            1.2,            3,              0,              0,              2,                    2011
+Tram,   TU-Lichtwiese Var. I,      Darmstadt,      ?,              23.58,        2.05,           4,              0,              0,              4,                    ?
+Tram,   TU-Lichtwiese Var. II,     Darmstadt,      ?,              8.32,         1.33,           1,              0,              0,              8,                    ?
 Tram,   Ruhbank,                   Stuttgart,      u15mail:48,     ?,            u15splan:4.922, u15splan:8,     0,              0,              u15mail:12,           u15seb:2007
-Tram,   Stammheim,                 Stuttgart,      u15mail:105,    ?,            u15mail:2.985,  u15nplan:5,     0,              1,              u15mail:6,            u15sv:2011
+Tram,   Stammheim,                 Stuttgart,      u15mail:105,    ?,            u15mail:2.985,  u15nplan:5,     0,              u15sv:1,        u15mail:6,            u15sv:2011
 Tram,   Hauptbahnhof,              Berlin,         ?,              mopoM10:22.8, tsM10:2.4,      bauDokuM10:6,   ?,              ?,              gpwBM10:17,           vorhabenM10:2015
 Tram,   Abschnitt,                 Bergen,         ?,              110,          9.8,            ?,              ?,              ?,              ?,                    2010
 Tram,   Netz,                      Århus,          ?,              65,           12,             ?,              ?,              ?,              ?,                    2016
@@ -21,4 +21,5 @@ UBahn,  gesamtes Netz,             Dubai,          gnCosts:5700,   gnCosts:3800,
 UBahn,  Linie B,                   Toulouse,       lafage:1150,    ?,            lafage:16.2,    lafage:20,      0,              lafage:16.0,    ?,                    lafage:2007
 UBahn,  gesamtes Netz,             Brescia,        brescRai:935,   brescSv:586,  brescSts:13.1,  brescSts:17,    brescSts:1.7,   brescSts:9.7,   ?,                    2012
 UBahn,  Neubau der U3,             Nürnberg,       ?,              nbSv05:360,   nbSv05:3.6,     nbSv05:5,       0,              nbSv05:3.6,     nGp:11,               nbSv05:2007
-UBahn,  3. Bauabschnitt U3 Nord,   Nürnberg,       ?,              nbNord3:83,   nbNord3:1.1,    nbNord3:2,      0,              nbNord3:1.1,    ?,                    nbNord3:2016
+UBahn,  U3 Nord (3. BA),           Nürnberg,       ?,              nbNord3:83,   nbNord3:1.1,    nbNord3:2,      0,              nbNord3:1.1,    ?,                    nbNord3:2016
+

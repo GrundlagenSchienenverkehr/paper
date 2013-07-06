@@ -1,4 +1,4 @@
-\documentclass[oneside,a4paper,11pt,german]{article}
+\documentclass[oneside,a4paper,11pt,german]{report}
 
 % vim: tw=80
 % -*- mode: Latex; fill-column: 80; -*-
@@ -11,11 +11,12 @@
 \usepackage{babel}
 \usepackage{url}
 \usepackage{breakurl}
-\usepackage[breaklinks]{hyperref}
+\usepackage[breaklinks,hidelinks]{hyperref}
 \usepackage{footmisc}
 \usepackage{bibgerm}
 \usepackage{eurosym}
 \usepackage{textcomp}
+\usepackage{titlesec}
 
 \title{Kosten von Infrastruktur \\ für Stadt- und Straßenbahnen}
 \author{
@@ -25,7 +26,6 @@
   Sigler, Marian \and
   Sulfrian, Alexander
 }
-
 
 \setlength{\parindent}{0em}
 \setlength{\parskip}{.5em}
@@ -73,6 +73,19 @@ TODO:
 
 \end{comment}
 
+\tableofcontents
+
+% \titleformat{Überschriftenklasse}[Absatzformatierung]{Textformatierung}{Nummerierung}
+%   {Abstand zwischen Nummerierung und Überschriftentext}
+%   {Code vor der Überschrift}[Code nach der Überschrift]
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\quad}{0pt}{}
+\titleformat{\section}[hang]{\LARGE\bfseries}{\thesection\quad}{0pt}{}
+\titleformat{\subsection}[hang]{\Large\bfseries}{\thesubsection\quad}{0pt}{}
+
+% \titlespacing{Überschriftenklasse}{Linker Einzug}{Platz oberhalb}
+%   {Platz unterhalb}[rechter Einzug]
+\titlespacing{\chapter}{0pt}{-2em}{2em}
+
 % sections as sperate files
 \input{intro}
 
@@ -86,6 +99,5 @@ TODO:
 
 \bibliographystyle{gerplain}
 \bibliography{main}
-
 
 \end{document}
