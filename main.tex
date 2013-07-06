@@ -10,6 +10,8 @@
 \usepackage{pdflscape}
 \usepackage{babel}
 \usepackage{url}
+\usepackage{breakurl}
+\usepackage[breaklinks]{hyperref}
 \usepackage{footmisc}
 \usepackage{bibgerm}
 \usepackage{eurosym}
@@ -27,6 +29,9 @@
 
 \setlength{\parindent}{0em}
 \setlength{\parskip}{.5em}
+
+% break url at / and -
+\def\UrlBreaks{\do\/\do-}
 
 \begin{document}
 
