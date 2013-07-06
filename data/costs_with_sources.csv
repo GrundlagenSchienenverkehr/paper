@@ -22,4 +22,3 @@ UBahn,  Linie B,                   Toulouse,       lafage:1150,    ?,           
 UBahn,  gesamtes Netz,             Brescia,        brescRai:935,   brescSv:586,  brescSts:13.1,  brescSts:17,    brescSts:1.7,   brescSts:9.7,   ?,                    2012
 UBahn,  Neubau der U3,             Nürnberg,       ?,              nbSv05:360,   nbSv05:3.6,     nbSv05:5,       0,              nbSv05:3.6,     nGp:11,               nbSv05:2007
 UBahn,  U3 Nord (3. BA),           Nürnberg,       ?,              nbNord3:83,   nbNord3:1.1,    nbNord3:2,      0,              nbNord3:1.1,    ?,                    nbNord3:2016
-
