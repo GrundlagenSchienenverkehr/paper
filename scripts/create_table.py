@@ -136,14 +136,14 @@ class Track:
             return "-"
 
     def latex_results_track(self):
-        return "%s in %s & %s & %s & %s & %s & %s & %s & %s & %s\\\\" % (
-            self.description, self.place, self.latex_estimated_costs(),
+        return "%s: %s & %s & %s & %s & %s & %s & %s & %s & %s\\\\" % (
+            self.place, self.description, self.latex_estimated_costs(),
             self.latex_costs(), self.latex_length(), self.latex_tunnel_length(), self.latex_bridge_length(),
             self.latex_switches(), self.latex_stations(), self.latex_year())
 
     def latex_analysis_track(self, avarage):
-        return "%s in %s & %s & %s \\\\" % (
-            self.description, self.place,
+        return "%s: %s & %s & %s \\\\" % (
+            self.place, self.description,
             self.latex_length_costs(avarage), self.latex_stations_costs(avarage) )
 
 
@@ -174,7 +174,7 @@ class Avarage:
 
 
     def latex_analysis_track(self, _):
-        return format_string("Durchschnitt & %0.2f Mio & \\textpm 0 & %0.2f Mio & \\textpm 0 \\\\", (self.length_costs, self.stations_costs))
+        return format_string("\\textit{Durchschnitt} & %0.2f Mio & \\textpm 0 & %0.2f Mio & \\textpm 0 \\\\", (self.length_costs, self.stations_costs))
 
 
 #
@@ -202,7 +202,7 @@ def analysis_table(tracks):
 
     header = " & ".join(fields) + " \\\\\n"
     subheader = " & absolut & relativ & absolut & relativ \\\\\n\\hline"
-    table_start = "\\begin{tabular}{" + " l" * (len(fields) +2  )  + " }\n"
+    table_start = "\\begin{tabular}{p{15em}" + " l" * (len(fields) +1  )  + " }\n"
     table_end = "\\end{tabular}"
 
     lines = [table_start, header, subheader ]
@@ -217,7 +217,7 @@ def analysis_table(tracks):
     return "\n".join(lines)
 
 def result_table(tracks):
-    fields = ["Strecke", "\multicolumn{2}{c}{Kosten in \euro}", " \multicolumn{3}{c}{Streckenlänge in km}", "Weichen", "Haltstellen", "Fertigstellung"]
+    fields = ["Strecke", "\multicolumn{2}{c}{Kosten in \euro}", " \multicolumn{3}{c}{Streckenlänge in km}", "Weichen", "Haltstellen", "Fertigst."]
     header = " & ".join(fields) + " \\\\\n" + "& geschätzt & tatsächlich & gesamt & Tunnel & Brücken & & & \\\\\n\hline\n"
     table_start = "\\begin{tabular}{" + " l" * 4 + "l" * 2 + "l" * 3  + " }\n"
     table_end = "\\end{tabular}"
