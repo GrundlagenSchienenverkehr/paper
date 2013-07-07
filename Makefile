@@ -151,14 +151,16 @@ html	: @$(DEP) $(EPSPICS)
 main.aux: main.tex
 	@$(run-pdflatex)
 
-main.pdf: results_table.tex images/costsPerKmTram.svg
+main.pdf: results_table.tex images/costsPerKmTram.eps
 
 results_table.tex: scripts/create_table.py data/costs_with_sources.csv
 	python3 $^ $@  analysis_table_trams.tex analysis_table_subway.tex
 
-images/costsPerKmTram.svg: scripts/linear_reg.py data/costs_with_sources.csv
-	 python2 $^ $@ images/costsPerKmSubway.svg analysis_regression_tram.tex analysis_regression_subway.tex
+images/costsPerKmTram.eps: scripts/linear_reg.py data/costs_with_sources.csv
+	 python2 $^ $@ images/costsPerKmSubway.eps analysis_regression_tram.tex analysis_regression_subway.tex
 
+images/costsPerKmSubway.eps: scripts/linear_reg.py data/costs_with_sources.csv
+	 python2 $^ $@ images/costsPerKmSubway.eps analysis_regression_tram.tex analysis_regression_subway.tex
 
 ######################################################################
 # Define rules for EPS source files.
