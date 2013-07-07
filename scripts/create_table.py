@@ -251,7 +251,12 @@ def result_table(tracks):
 
     lines = [table_start, header]
 
+    subway = False
     for t in tracks:
+        if t.subway and not subway:
+            subway = True
+            lines.append("[.2em] \\hline \\\\[-.8em]")
+
         lines.append(t.latex_results_track())
 
     lines.append(table_end)
