@@ -30,6 +30,7 @@ def regression(filename, data, name):
     clf = linear_model.ARDRegression(compute_score=True)
     clf.fit(x,y)
     result = clf.coef_
+    print name
     print result
 
     with open(filename, "w") as out:
