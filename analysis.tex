@@ -8,7 +8,9 @@
 
 Aus den gefundenen Daten haben wir die Kosten pro Kilometer sowie pro Halt berechnet:
 
+\nopagebreak
 \input{analysis_table_trams}
+\includegraphics[width=\textwidth]{images/costsPerKmTram}
 
 Es zeigen sich sehr große Abweichungen zwischen den verschiedenen Projekten. Anders als vermutet liegen jedoch die Kosten der ausländischen Projekte in einem ähnlichen Bereich wie die der deutschen.
 
@@ -20,24 +22,40 @@ Im folgenden versuchen wir Besonderheiten der aus diesem Rahmen fallenden Projek
 
     \item \textbf{Freiburg-Zähringen:} Hier war der Neubau einer Brücke über einen Bach sowie der Bau einer zweiten Brücke der Güterbahn, die die Strecke kreuzt, nötig. Um für die restliche Strecke einen Kilometerpreis von 13{\ }Mio.{\ }Euro zu erhalten, muss man für die beiden Bauwerke einen Preis von etwa drei Millionen Euro ansetzen. Das erscheint uns denkbar.
     \item \textbf{Darmstadt-Arheilgen (BA 1):} Hier gab es Probleme mit alten, unbekannten Versorgungsleitungen, wodurch sich das Gesamtprojekt von 26,9{\ }Mio.{\ }Euro auf 38,5{\ }Mio.{\ }Euro erhöhte. Die ursprünglich angenommenen Kosten ergeben einen Kilometerpreis von 10,8{\ }Mio.{\ }Euro, was wieder sehr gut im Rahmen liegt.
-    \item \textbf{Stuttgart-Stammheim:} Wie erwartet, hat der Tunnel die Kosten des Projekts sehr weit hochgetrieben. Nimmt man jedoch für das einen Kilometer lange Tunnelstück Kosten von etwa 80{\ }Mio.{\ }Euro und für den knapp zwei Kilometer langen oberirdischen Teil von knapp 13{\ }Mio.{\ }Euro an, so ergeben sich als Summe die 105{\ }Mio.{\ }Euro, die das Projekt tatsächlich gekostet hat. Die beiden angenommenen Werte liegen jeweils am oberen Ende des von uns für oberirdische bzw. unterirdische (siehe unten) Strecken angenommenen Rahmens.
+    \item \textbf{Stuttgart-Stammheim:} Wie erwartet, hat der Tunnel die Kosten des Projekts sehr weit hochgetrieben. Nimmt man jedoch für das einen Kilometer lange Tunnelstück Kosten von 75{\ }Mio.{\ }Euro und für den knapp zwei Kilometer langen oberirdischen Teil von 13{\ }Mio.{\ }Euro an, so ergeben sich als Summe etwa die 105{\ }Mio.{\ }Euro, die das Projekt tatsächlich gekostet hat. Diese beiden angenommenen Werte liegen jeweils am oberen Ende des von uns für oberirdische bzw. unterirdische (siehe unten) Strecken angenommenen Rahmens.
     \item \textbf{T1 in Toulouse:} Hier musste eine Brücke über eine Autobahn neu gebaut werden; diese alleine kann jedoch nicht den großen Kostenunterschied erklären. In der Zahl sind jedoch Kosten von 17{\ }Mio.{\ }Euro für Leitungsverlegung enthalten \cite{tlsesv}. Wir konnten nicht herausfinden, ob diese Kosten bei anderen Projekten mit enthalten sind, falls nicht, könnte dies den Unterschied erklären. Da die Toulouser U-Bahn (trotz fahrerlosem Betrieb) eher günstiger war als die deutschen U-Bahnen, schließen wir landestypische Rahmenbedingungen als Ursache aus.
-    %TODO darmstadt billiger weil alt bla
+    \item \textbf{Historische Strecken in Darmstadt:} Obwohl die Kosten inflationsbereinigt sind, liegen sie weit unter denen heutiger Projekte. Dies liegt vermutlich zum einen daran, dass heutige Strecken wesentlich anspruchsvoller gebaut sind (höhere Geschwindigkeit, oft eigene Trassierung, Lärm- und Umweltaspekte, etc.). Außerdem lässt sich daraus schließen, dass Baukosten stärker als die Inflation gestiegen sind. Dies kann mit den seitdem stark gestiegenen Lohnkosten erklärt werden.
 
 \end{itemize}
 
 \section{U-Bahnen}
 
-\input{analysis_table_subway}
+Auch hier haben wir die Preise pro Kilometer und pro Halt berechnet:
 
+\nopagebreak
+\input{analysis_table_subway}
+\includegraphics[width=\textwidth]{images/costsPerKmSubway}
+
+Wieder ergibt sich eine recht breite Streuung, und auch hier liegen die ausländischen Projekte im selben Bereich wie die deutschen.
+Es lässt sich jedoch eine starke Häufung zwischen 70 und 75{\ }Mio.{\ }Euro finden.
+
+Wie schon bei den Straßenbahnen wollen im folgenden Gründe dafür suchen, dass manche Strecken außerhalb dieses Rahmens liegen.
+
+\begin{itemize}
+    \item \textbf{U5-Lückenschluss in Berlin:} Hier ist, wie schon oben beschrieben, wohl der schwierige Untergrund, die große Tiefe und die Kreuzung der Spree für die hohen Kosten verantwortlich. Außerdem sind im Rahmen des Kreuzungsbahnhofs auch Arbeiten an der U6 Teil des Projekts.
+    \item \textbf{Hafencity in Hamburg:} Die Strecke liegt noch recht nahe an den anderen Strecken, die geringfügig höheren Kosten können vermutlich darauf zurückführen, dass viel unterhalb des Hafens gebaut werden musste. Die häufig vorgebrachte Kritik, dass das Projekt zu teuer sei, lässt sich damit jedoch zunächst nicht nachvollziehen. Betrachtet man jedoch die Kosten pro Haltestelle, zeigt sich jedoch, dass die Kritik doch berechtigt ist.
+    \item \textbf{BA 1.1 und 1.2 in Nürnberg:} Die einzige Besonderheit ist, dass der Boden dort aus Sandstein besteht. Wir vermuten, dass das die Tunnelbohrung vereinfacht hat, das Sandstein gleichzeitig sehr weich, aber trotzdem stabil ist. Ob das jedoch die hohen Einsparungen erklären kann, scheint fraglich.
+\end{itemize}
+
+
+\section{Lineare Regression}
 
 \input{analysis_regression_tram}
 
+Ergebnis der Regression bei Trams: Streckenkilometer für \tramnormal und Tunnelkilometer für \tramtunnel.
+
+
 \input{analysis_regression_subway}
 
-\includegraphics[width=\textwidth]{images/costsPerKmSubway}
-\includegraphics[width=\textwidth]{images/costsPerKmTram}
-
-Ergebnis der Regression bei Trams: Sreckenkilometer für \tramnormal und Tunnelkilometer für \tramtunnel.
-Ergebnis der Regression bei UBahn: Sreckenkilometer für \subwaynormal und Tunnelkilometer für \subwaytunnel.
+Ergebnis der Regression bei UBahn: Streckenkilometer für \subwaynormal und Tunnelkilometer für \subwaytunnel.
 
