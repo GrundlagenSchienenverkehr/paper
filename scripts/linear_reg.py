@@ -19,6 +19,7 @@ def draw_plot(filename, data):
     setp(l, 'markerfacecolor', 'grey')
 
     plt.savefig(filename,dpi=100)
+    close()
 
 def regression(filename, data, name):
 
