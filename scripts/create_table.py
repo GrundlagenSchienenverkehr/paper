@@ -151,26 +151,26 @@ class Avarage:
 
     def __init__(self, tracks):
 
-        self.length_costs = 0
-        self.stations_costs = 0
-        counter = 0
+        stations = 0
+        stations_costs = 0
+
+        length = 0
+        length_costs = 0
 
         for t in tracks:
 
 
-            if t.costs and t.length:
-                counter += 1
-                self.length_costs += t.costs/t.length
-                self.stations_costs += t.costs/t.stations
+            if ( t.costs or t.estimated_costs ) and t.length:
+                length_costs += t.costs or t.estimated_costs
+                length += t.length
 
-            elif t.estimated_costs and t.length:
-                counter += 1
-                self.length_costs += t.estimated_costs/t.length
-                self.stations_costs += t.estimated_costs/t.stations
+            if ( t.costs or t.estimated_costs) and t.stations:
+                stations_costs += t.costs or t.estimated_costs
+                stations += t.stations
 
 
-        self.length_costs /= counter
-        self.stations_costs /= counter
+        self.length_costs = length_costs / length
+        self.stations_costs = stations_costs / stations
 
 
     def latex_analysis_track(self, _):
