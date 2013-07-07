@@ -17,7 +17,7 @@ Tram,   Netz,                      Århus,          ?,              midttrafik:6
 Tram,   Tramlinie T1,              Toulouse,       lafage:212,     ?,            lafage:11,      lafage:18,      0,              0,              ?,                    lafage:2010
 UBahn,  Hafencity,                 Hamburg,        keuHH: 323.6,   ?,            keuHH:4,        keuHH:2,        ?,              keuHH:4,        gpwHH:6,              keuHH:2012
 UBahn,  Lückenschluss U5,          Berlin,         ?,              bwwwU5: 433,  bkhU5:2.2,      bkhU5:3,        ?,              bkhU5:2.2,      gpwB:14,              bwwwU5:2019
-UBahn,  gesamtes Netz,             Dubai,          gnCosts:5700,   gnCosts:3800, dubaimetro:75,  hallodubai:47,  ?,              hallodubai:12,  ?,                    dubaiOpensGreen:2011
+UBahn,  gesamtes Netz,             Dubai,          gnCosts:5700,   gnCosts:3800, dubaimetro:75,  hallodubai:47,  hallodubai:63,  hallodubai:12,  ?,                    dubaiOpensGreen:2011
 UBahn,  Metrolinie B,              Toulouse,       lafage:1150,    ?,            lafage:16.2,    lafage:20,      0,              lafage:16.0,    ?,                    lafage:2007
 UBahn,  gesamtes Netz,             Brescia,        brescRai:935,   brescSv:586,  brescSts:13.1,  brescSts:17,    brescSts:1.7,   brescSts:9.7,   ?,                    2012
 UBahn,  Neubau U3 (BA 1.1),        Nürnberg,       nbBr:62,        ?,            nbBr:1.6,       nbBr:2,         0,              nbBr:1.6,       nGp:6,                nbBr:2008
