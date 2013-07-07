@@ -17,6 +17,8 @@
 \usepackage{eurosym}
 \usepackage{textcomp}
 \usepackage{titlesec}
+\usepackage{color}
+\usepackage{tocbibind}
 
 \title{Kosten von Infrastruktur \\ für Stadt- und Straßenbahnen}
 \author{
@@ -73,7 +75,10 @@ TODO:
 
 \end{comment}
 
-\tableofcontents
+\begingroup
+  \renewcommand{\vspace}[2]{}
+  \tableofcontents
+\endgroup
 
 % \titleformat{Überschriftenklasse}[Absatzformatierung]{Textformatierung}{Nummerierung}
 %   {Abstand zwischen Nummerierung und Überschriftentext}
