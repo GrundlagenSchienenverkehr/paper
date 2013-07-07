@@ -3,6 +3,7 @@
 % vim: tw=80
 % -*- mode: Latex; fill-column: 80; -*-
 
+\usepackage[top=2.5cm, bottom=2.5cm, left=4cm, right=2.5cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{verbatim}
@@ -88,7 +89,7 @@ TODO:
 
 % \titlespacing{Überschriftenklasse}{Linker Einzug}{Platz oberhalb}
 %   {Platz unterhalb}[rechter Einzug]
-\titlespacing{\chapter}{0pt}{-2em}{2em}
+\titlespacing{\chapter}{0pt}{0em}{1em}
 
 % sections as sperate files
 \input{intro}
@@ -103,5 +104,6 @@ TODO:
 
 \bibliographystyle{gerplain}
 \bibliography{main}
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
 
 \end{document}
