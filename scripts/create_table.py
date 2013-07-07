@@ -136,8 +136,12 @@ class Track:
         else:
             return "-"
 
-    def latex_results_track(self):
-        return "%s: %s & %s & %s & %s & %s & %s & %s & %s & %s\\\\" % (
+    def latex_results_track(self, last_place):
+        template = "%s: %s & %s & %s & %s & %s & %s & %s & %s & %s\\\\"
+        if last_place == self.place:
+            template = "{\color{white}%s: }%s & %s & %s & %s & %s & %s & %s & %s & %s\\\\"
+
+        return template % (
             self.place, self.description, self.latex_estimated_costs(),
             self.latex_costs(), self.latex_length(), self.latex_tunnel_length(), self.latex_bridge_length(),
             self.latex_switches(), self.latex_stations(), self.latex_year())
@@ -252,12 +256,15 @@ def result_table(tracks):
     lines = [table_start, header]
 
     subway = False
+    last_place = None
     for t in tracks:
         if t.subway and not subway:
             subway = True
             lines.append("[.2em] \\hline \\\\[-.8em]")
 
-        lines.append(t.latex_results_track())
+        lines.append(t.latex_results_track(last_place))
+        # hide multiple cities:
+        #last_place = t.place
 
     lines.append(table_end)
     return "\n".join(lines)
