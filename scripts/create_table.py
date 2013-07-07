@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import csv
 import sys
 import locale
@@ -146,6 +147,32 @@ class Track:
             self.place, self.description,
             self.latex_length_costs(avarage), self.latex_stations_costs(avarage) )
 
+
+    def get_costs_length(self) :
+        return ( self.costs or self.estimated_costs ) / self.length
+
+
+    def get_length_vector(self) :
+        if self.length:
+            tl = 0
+            bl = 0
+
+            if self.tunnel_length:
+                tl = self.tunnel_length
+
+            if self.bridge_length:
+                bl = self.bridge_length
+
+            l =  self.length - (tl)
+
+            return [ tl, self.length - (bl +  tl)]
+
+
+    def get_costs(self):
+        if self.costs:
+            return self.costs
+        if self.estimated_costs:
+            return self.estimated_costs
 
 class Avarage:
 
