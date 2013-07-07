@@ -50,12 +50,10 @@ Wie schon bei den Straßenbahnen wollen im folgenden Gründe dafür suchen, dass
 
 \section{Lineare Regression}
 
+\begin{figure}[h]
 \input{analysis_regression_tram}
+\caption{Fehler der Regression}
+\label{regtram}
+\end{figure}
 
-Ergebnis der Regression bei Trams: Streckenkilometer für \tramnormal und Tunnelkilometer für \tramtunnel.
-
-
-\input{analysis_regression_subway}
-
-Ergebnis der Regression bei UBahn: Streckenkilometer für \subwaynormal und Tunnelkilometer für \subwaytunnel.
-
+Mittels linearer Regression haben wir versucht zu ermitteln was ein Kilometer Strecke Kostet, in Abhängigkeit davon ob er unterirdisch oder oberirdisch verläuft.Wir vermuten eine lineare Abhängigkeit zwischen Länge der unter- oder überirdischen Strecke und versuchen die Daten daher an ein lineare Model zu fitten.  Die Lösung der Gleichung erfolgte mittels des scikit-learn Biblothek und wir verwenden das \emph{ Bayesian Ridge Regression} Verfahren. Damit haben wir für einen unteridischen Straßenbahn Kilometer den Preis von 23,15 Mio Euro berechnet und pro überirdischen Kilometer 6,24 Mio Euro. Die Tabelle \ref{regtram} zeigt für jede der betrachteten Strecke den Fehler, der sich aus einer Preisschätzung mit unseren berechneten Paramtern ergibt Der Fehler liegt bei den historischen Strecken besonders hoch, was ebenfalls veranschaulicht, dass diese nur beschränkt mit den neueren verglichen werden können. Allgemein ist der Fehler recht hoch, vermutlich vorallem da die Kosten für die einzelnen Projekte sehr streuen.  Genauere Untersuchungen welche Modelle das Problem besser approximieren würden konnten wir aus zeitlichen Gründen nicht durchführen.
