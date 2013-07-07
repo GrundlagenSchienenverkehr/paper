@@ -4,7 +4,7 @@ from create_table import *
 from pylab import *
 from sklearn import linear_model, gaussian_process
 import matplotlib.pyplot as plt
-
+from locale import setlocale, format_string
 
 def draw_plot(filename, data):
 
@@ -34,8 +34,8 @@ def regression(filename, data, name):
     with open(filename, "w") as out:
 
         lines = [
-            "\\newcommand{\\reg_%s_normal}{%0.2f}" % (name, result[1]),
-            "\\newcommand{\\reg_%s_tunnel}{%0.2f}" % (name, result[0]),
+            format_string("\\newcommand{\\%snormal}{%0.2f}", (name, result[1])),
+            format_string("\\newcommand{\\%stunnel}{%0.2f}", (name, result[0])),
             "\\begin{tabular}{llll}",
             "Strecke & \multicolumn{2}{c}{Kosten} & Fehler\\\\",
             "& geschätzt & tatsächlich & \\\\",
@@ -48,11 +48,11 @@ def regression(filename, data, name):
             for xi, ci in zip(xv, result):
                 pred += xi*ci
 
-            lines.append("%s, %0.2f, %0.2f, %d %%\\\\" % (
+            lines.append(format_string("%s & %0.2f &  %0.2f & %d \\%%\\\\", (
                     name,
                     pred,
                     yv,
-                    (pred - yv)*100/yv))
+                    (pred - yv)*100/yv)))
 
 
         lines.append("\\end{tabular}")
@@ -65,14 +65,17 @@ def regression(filename, data, name):
 if __name__ == "__main__":
     data = readCsvFile(sys.argv[1])
 
+    setlocale(locale.LC_NUMERIC, 'de_DE.utf8')
 
     trams = list(filter(lambda x: x.tram and x.length and (x.costs or x.estimated_costs), data))
     subs = list(filter(lambda x: x.subway and x.length and (x.costs or x.estimated_costs), data))
 
-    regression("/dev/stdout", trams, "tram")
-    draw_plot("fig1.svg", trams)
 
-    regression("/dev/stdout", subs, "subway")
-    draw_plot("fig2.svg", subs)
+    draw_plot(sys.argv[2], trams)
+    draw_plot(sys.argv[3], subs)
+
+    regression(sys.argv[4], trams, "tram")
+    regression(sys.argv[5], subs, "subway")
+
 
 
