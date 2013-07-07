@@ -124,7 +124,7 @@ class Track:
         if self.costs and self.length:
             return format_string("%0.2f  Mio & %s", (self.costs / self.length, dev(avarage.length_costs,self.costs/ self.length) ))
         elif self.estimated_costs and self.length:
-            return format_string("%0.2f Mio \\footnotemark[1] & %s", (self.estimated_costs/ self.length, dev(avarage.length_costs,self.estimated_costs/ self.length) ))
+            return format_string("%0.2f Mio \\footnotemark[2] & %s", (self.estimated_costs/ self.length, dev(avarage.length_costs,self.estimated_costs/ self.length) ))
         else:
             return "-"
 
