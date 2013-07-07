@@ -35,3 +35,6 @@ main.pdf
 results_table.tex
 analysis_table_subway.tex
 analysis_table_trams.tex
+analysis_regression_subway.tex
+analysis_regression_tram.tex
+images/*
