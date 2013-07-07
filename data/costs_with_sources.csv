@@ -20,5 +20,7 @@ UBahn,  Lückenschluss U5,          Berlin,         ?,              bwwwU5: 433,
 UBahn,  gesamtes Netz,             Dubai,          gnCosts:5700,   gnCosts:3800, dubaimetro:75,  hallodubai:47,  ?,              hallodubai:12,  ?,                    dubaiOpensGreen:2011
 UBahn,  Linie B,                   Toulouse,       lafage:1150,    ?,            lafage:16.2,    lafage:20,      0,              lafage:16.0,    ?,                    lafage:2007
 UBahn,  gesamtes Netz,             Brescia,        brescRai:935,   brescSv:586,  brescSts:13.1,  brescSts:17,    brescSts:1.7,   brescSts:9.7,   ?,                    2012
-UBahn,  Neubau der U3,             Nürnberg,       ?,              nbSv05:360,   nbSv05:3.6,     nbSv05:5,       0,              nbSv05:3.6,     nGp:11,               nbSv05:2007
+UBahn,  Neubau U3 (BA 1.1),        Nürnberg,       nbBr:62,        ?,            nbBr:1.6,       nbBr:2,         0,              nbBr:1.6,       nGp:6,                nbBr:2008
+UBahn,  Neubau U3 (BA 1.2),        Nürnberg,       nbBr:42,        ?,            nbBr:1.2,       nbBr:1,         0,              nbBr:1.2,       nGp:4,                nbBr:2008
+UBahn,  Neubau U3 (BA 1.3),        Nürnberg,       nbBr:66,        ?,            nbBr:1.1,       nbBr:2,         0,              nbBr:1.1,       nGp:2,                nbBr:20011
 UBahn,  U3 Nord (3. BA),           Nürnberg,       ?,              nbNord3:83,   nbNord3:1.1,    nbNord3:2,      0,              nbNord3:1.1,    ?,                    nbNord3:2016
