@@ -12,7 +12,7 @@ Tram,   TU-Lichtwiese Var. II,     Darmstadt,      ?,              mrDaLw:8.32, 
 Tram,   Ruhbank,                   Stuttgart,      u15mail:48,     ?,            u15splan:4.922, u15splan:8,     0,              0,              u15mail:12,           u15seb:2007
 Tram,   Stammheim,                 Stuttgart,      u15mail:105,    ?,            u15mail:2.985,  u15nplan:5,     0,              u15sv:1,        u15mail:6,            u15sv:2011
 Tram,   Hauptbahnhof,              Berlin,         ?,              mopoM10:22.8, tsM10:2.4,      bauDokuM10:6,   ?,              ?,              gpwBM10:17,           vorhabenM10:2015
-Tram,   Abschnitt,                 Bergen,         ?,              BybaneBergen:110,          BybaneBergen:9.8,            ?,              ?,              ?,              ?,                    BybaneBergen:2010
+Tram,   Abschnitt,                 Bergen,         ?,              BybaneBergen:110,          BergenCurrentStatus:9.8,            ?,              ?,              BergenCurrentStatus:2.63,              ?,                    BybaneBergen:2010
 Tram,   Netz,                      Århus,          ?,              midttrafik:65,midttrafik:12,  ?,              ?,              ?,              ?,                    midttrafik:2016
 Tram,   Tramlinie T1,              Toulouse,       tlsesv:157,     ?,            lafage:11,      lafage:18,      0,              0,              ?,                    lafage:2010
 UBahn,  Hafencity,                 Hamburg,        keuHH: 323.6,   ?,            keuHH:4,        keuHH:2,        ?,              keuHH:4,        gpwHH:6,              keuHH:2012
