@@ -102,7 +102,10 @@ TODO:
 
 \begingroup
   \renewcommand{\vspace}[2]{}
-  \tableofcontents
+  \makeatletter
+  \chapter*{Inhaltsverzeichnis}
+  \@starttoc{toc}
+  \makeatother
 \endgroup
 
 % \titleformat{Überschriftenklasse}[Absatzformatierung]{Textformatierung}{Nummerierung}
